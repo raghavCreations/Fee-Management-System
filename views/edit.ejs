@@ -1,0 +1,57 @@
+<%- include('header') %>
+
+<div class="container mt-5">
+  <h1 class="text-center">Edit User</h1>
+  <form action="/test/<%= user.id %>/edit" method="POST">
+   
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="name" class="form-label fw-bold">Name</label>
+        <input type="text" class="form-control" name="name" value="<%= user.name %>" placeholder="Enter your name">
+      </div>
+      <div class="col-md-6">
+        <label for="fathername" class="form-label fw-bold">Father's Name</label>
+        <input type="text" class="form-control" name="fname" value="<%= user.fname %>" placeholder="Enter your father's name">
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="dob" class="form-label fw-bold">Date of Birth</label>
+        <input type="date" class="form-control" name="dob" value="<%= user.dob %>">
+      </div>
+      <div class="col-md-6">
+        <label for="doa" class="form-label fw-bold">Date of Admission</label>
+        <input type="date" class="form-control" name="doa" value="<%= user.doa %>">
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="mobile" class="form-label fw-bold">Mobile Number</label>
+        <input type="tel" class="form-control" name="mobile" value="<%= user.mobile %>" placeholder="Enter your mobile number">
+      </div>
+      <div class="col-md-6">
+        <label for="email" class="form-label fw-bold">Email address</label>
+        <input type="email" class="form-control" name="email" value="<%= user.email %>" placeholder="Enter your email address">
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="address" class="form-label fw-bold">Address</label>
+        <textarea class="form-control" name="address" rows="3"><%= user.address %></textarea>
+      </div>
+      <div class="col-md-6">
+        <label for="course" class="form-label fw-bold">Course</label>
+        <select class="form-select" aria-label="Select course" name="course">
+          <option selected>Select course duration</option>
+          <option value="3 months" <%= user.course === '3 months' ? 'selected' : '' %>>3 months</option>
+          <option value="6 months" <%= user.course === '6 months' ? 'selected' : '' %>>6 months</option>
+          <option value="12 months" <%= user.course === '12 months' ? 'selected' : '' %>>12 months</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <button type="submit" class="btn btn-primary w-100">Save Changes</button>
+      </div>
+    </div>
+ 

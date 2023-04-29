@@ -1,0 +1,52 @@
+<%- include('header') %>
+
+<div class="container my-5">
+  <h1 class="mb-3 text-center">Add Fees</h1>
+
+  <div class="card mb-3">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-6">
+          <h5 class="card-title">Student Information</h5>
+          <hr>
+          <p class="card-text"><strong>Name:</strong> <%= user.name %></p>
+          <p class="card-text"><strong>Father Name:</strong> <%= user.fname %></p>
+          <p class="card-text"><strong>Mobile Number:</strong> <%= user.mobile %></p>
+        </div>
+        <div class="col-md-6">
+            <h5 class="card-title">Fee Details</h5>
+            <hr>
+            <form action="/fees" method="post">
+              <input type="hidden" name="studentId" value= <%= studentId %> >
+              <input type="hidden" name="username" value= <%= user.name %>>
+              <input type="hidden" name="mobileNumber" value= <%= user.mobile %>>
+
+                <div class="form-group">
+                    <label for="amount">Amount:</label>
+                    <input type="text" class="form-control" id="amount" name="amount">
+                </div>
+                <div class="form-group">
+                    <label for="fromDate">From Date:</label>
+                    <input type="date" class="form-control" id="fromDate" name="fromDate">
+                </div>
+                <div class="form-group">
+                    <label for="toDate">To Date:</label>
+                    <input type="date" class="form-control" id="toDate" name="toDate">
+                </div>
+                <button type="submit" class="btn btn-primary mt-3">Submit</button>
+            </form>
+            <!-- <div class="col-md-6">
+              {% if errors %}
+              <div class="alert alert-danger mt-3">
+                  {% for field, error in errors %}
+                  <p>{{ field }}: {{ error.message }}</p>
+                  {% endfor %}
+              </div>
+              {% endif %}
+            </div> -->
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>

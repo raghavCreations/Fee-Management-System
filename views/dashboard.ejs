@@ -1,0 +1,75 @@
+<%- include('header') %>
+<style>
+  body {
+    background-color: beige;
+  }
+  .table thead th {
+    background-color: #1976D2;
+    color: white;
+  }
+  .table-danger {
+    background-color: #ffcdd2;
+  }
+  .table-warning {
+    background-color: #fff9c4;
+  }
+  .table-info {
+    background-color: #bbdefb;
+  }
+  .table-success {
+    background-color: #c8e6c9;
+  }
+  .table-primary {
+    background-color: #b2ebf2;
+  }
+  .position-badge {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background-color: #1976D2;
+    color: white;
+    text-align: center;
+    line-height: 24px;
+    border-radius: 50%;
+    font-size: 14px;
+    margin-right: 5px;
+  }
+  .position-badge.warning {
+    background-color: #f34c1a;
+  }
+</style>
+<div class="container">
+  <h1 class="text-center">Dashboard</h1>
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Position</th>
+          <th>Name</th>
+          <th>Days Since Last Payment</th>
+          <th>Quotes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% data.forEach(function(item, index) { %>
+          <tr class="<%= index === 0 ? 'table-danger' : (index < 4 ? 'table-warning' : '') %>">
+            <td>
+              <span class="position-badge <%= index < 4 ? 'warning' : '' %>">
+                <%= index + 1 %>
+              </span>
+            </td>
+            <td><%= item.name %></td>
+            <td><%= item.daysSinceLastPayment %></td>
+            <td>
+              <% if (item.daysSinceLastPayment > 0) { %>
+                Fees Dedo Time Ho Gya
+              <% } else if (item.daysSinceLastPayment < 0) { %>
+                Keep It Up
+              <% } %>
+            </td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </div>
+</div>

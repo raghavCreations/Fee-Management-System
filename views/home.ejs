@@ -1,0 +1,42 @@
+<%- include('header') %>
+<style>
+  .top{
+  background-color: #1976D2;
+  color: white;
+}
+
+</style>
+<div class="container">
+  <h1 class="text-center">Fees Data</h1>
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr class="top">
+          <th>Student Name</th>
+          <th>Mobile</th>
+          <th>Amount</th>
+          <th>From Date</th>
+          <th>To Date</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% fees.forEach(function(fee, index) { %>
+          <tr class="<%= index % 2 === 0 ? 'bg-light' : 'bg-white' %>">
+            <td><%= fee.username %></td>
+            <td><%= fee.mobileNumber %></td>
+            <td><%= fee.amount %></td>
+            <td><%= new Date(fee.fromDate).toLocaleDateString() %></td>
+            <td><%= new Date(fee.toDate).toLocaleDateString() %></td>
+            <td>
+              <form method="post" action="/deleteFee">
+                <input type="hidden" name="feeId" value="<%= fee._id %>">
+                <button type="submit" class="btn btn-danger">Delete</button>
+              </form>
+            </td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </div>
+</div>

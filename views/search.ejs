@@ -1,0 +1,72 @@
+<%- include('header') %>
+  <style>
+    a {
+      text-decoration: none;
+      color: white;
+    }
+
+    .top {
+      background-color: #1976D2;
+      color: white;
+    }
+
+    .dropdown-menu {
+      max-height: 300px;
+      overflow-y: scroll;
+    }
+  </style>
+
+  <div class="container my-5">
+    <h1 class="mb-3">Search Users</h1>
+
+    <form method="GET" action="/search" class="my-4">
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" name="q" placeholder="Search by name" value="<%= searchQuery || '' %>">
+        <button class="btn btn-primary btn-secondary" type="submit">Search</button>
+      </div>
+    </form>
+
+    <% if (searchQuery && users.length> 0) { %>
+      <p class="mb-3">Showing results for '<%= searchQuery %>'</p>
+      <% users.forEach(user=> { %>
+        <div class="card mb-3">
+          <div class="card-body">
+            <div class="row align-items-center">
+              <div class="col-md-3">
+                <p class="mb-1"><strong>Name:</strong></p>
+                <p class="mb-0">
+                  <%= user.name %>
+                </p>
+              </div>
+              <div class="col-md-3">
+                <p class="mb-1"><strong>Father's Name:</strong></p>
+                <p class="mb-0">
+                  <%= user.fname %>
+                </p>
+              </div>
+              <div class="col-md-2">
+                <p class="mb-1"><strong>Mobile Number:</strong></p>
+                <p class="mb-0">
+                  <%= user.mobile %>
+                </p>
+              </div>
+              <div class="col-md-2 text-right">
+                <a href="/fees?name=<%= user.name %>&fname=<%= user.fname %>&mobile=<%= user.mobile %>&studentId=<%= user._id %>"
+                  class="btn btn-success">Add fees</a>
+
+              </div>
+              <div class="col-md-2 text-right">
+                <form action="/lastpayment" method="post">
+                  <input type="hidden" name="mobileNumber" value= <%= user.mobile %>>
+                  <button class="btn btn-primary"   >Last Payment</button>
+                </form>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <% }); %>
+        <% } else { %>
+          <p>No results found for '<%= searchQuery %>'</p>
+          <% } %>
+  </div>
